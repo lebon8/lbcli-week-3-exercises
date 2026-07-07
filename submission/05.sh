@@ -15,5 +15,4 @@ recipient=2MvLcssW49n9atmksjwg2ZCMsEMsoj3pzUP
 psbt=$(bitcoin-cli -regtest -named createpsbt inputs='''[ { "txid": "'$txid'", "vout": '$utxo_vout0' }, { "txid": "'$txid'", "vout": '$utxo_vout1' } ]''' outputs='''{ "'$recipient'": 0.20000000 }''')
 update=$(bitcoin-cli -regtest utxoupdatepsbt $psbt)
 
-psbt_f=$(bitcoin-cli -regtest walletprocesspsbt $update | jq -r '.psbt')
-echo $psbt_f
+bitcoin-cli -regtest walletprocesspsbt $update | jq -r '.psbt'
